@@ -6,13 +6,281 @@ import {
   FaTooth,
   FaUserDoctor,
   FaShieldHeart,
-  FaClock,
   FaLocationDot,
   FaCircleCheck,
 } from "react-icons/fa6";
 
 function Services() {
   const whatsappNumber = "919739749510";
+
+  /* =====================================================
+     SEO + GEO + STRUCTURED DATA
+  ===================================================== */
+
+  useEffect(() => {
+    const websiteUrl = "https://www.mydentistbangalore.com/";
+    const pageUrl = "https://www.mydentistbangalore.com/services";
+    const logoUrl = "https://www.mydentistbangalore.com/logo.png";
+
+    document.title =
+      "Dental Services in Bangalore | My Dentist Bellandur & Koramangala";
+    document.documentElement.lang = "en-IN";
+
+    const setMeta = (attribute, key, content) => {
+      let element = document.head.querySelector(
+        `meta[${attribute}="${key}"]`
+      );
+
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        element.setAttribute("data-services-seo", "true");
+        document.head.appendChild(element);
+      }
+
+      element.setAttribute("content", content);
+    };
+
+    /* BASIC SEO */
+    setMeta(
+      "name",
+      "description",
+      "Explore dental services at My Dentist Bangalore in Bellandur and Koramangala, including laser dentistry, dental implants, cosmetic dentistry, invisible braces, aligners, pediatric dentistry, root canal treatment, teeth whitening and dental prosthetics."
+    );
+
+    setMeta(
+      "name",
+      "keywords",
+      "dental services Bangalore, dentist Bellandur, dentist Koramangala, laser dentistry Bangalore, dental implants Bangalore, cosmetic dentistry Bangalore, invisible braces Bangalore, aligners Bangalore, pediatric dentistry Bangalore, root canal treatment Bangalore, teeth whitening Bangalore, dental prosthetics Bangalore"
+    );
+
+    setMeta("name", "author", "My Dentist Bangalore");
+
+    setMeta(
+      "name",
+      "robots",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+
+    setMeta(
+      "name",
+      "googlebot",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+
+    /* GEO / LOCAL SEO */
+    setMeta("name", "geo.region", "IN-KA");
+
+    setMeta(
+      "name",
+      "geo.placename",
+      "Bengaluru, Karnataka, India"
+    );
+
+    /* OPEN GRAPH */
+    setMeta(
+      "property",
+      "og:title",
+      "Dental Services in Bangalore | My Dentist Bellandur & Koramangala"
+    );
+
+    setMeta(
+      "property",
+      "og:description",
+      "Explore advanced and comprehensive dental treatments at My Dentist in Bellandur and Koramangala, Bengaluru."
+    );
+
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:url", pageUrl);
+    setMeta("property", "og:site_name", "My Dentist Bangalore");
+    setMeta("property", "og:locale", "en_IN");
+    setMeta("property", "og:image", logoUrl);
+
+    setMeta(
+      "property",
+      "og:image:alt",
+      "My Dentist Bangalore Dental Services"
+    );
+
+    /* TWITTER / X */
+    setMeta("name", "twitter:card", "summary_large_image");
+
+    setMeta(
+      "name",
+      "twitter:title",
+      "Dental Services in Bangalore | My Dentist"
+    );
+
+    setMeta(
+      "name",
+      "twitter:description",
+      "Explore dental implants, root canal treatment, aligners, laser dentistry, cosmetic dentistry and more at My Dentist Bangalore."
+    );
+
+    setMeta("name", "twitter:image", logoUrl);
+
+    /* CANONICAL */
+    let canonical = document.head.querySelector(
+      'link[rel="canonical"]'
+    );
+
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      canonical.setAttribute("data-services-seo", "true");
+      document.head.appendChild(canonical);
+    }
+
+    canonical.setAttribute("href", pageUrl);
+
+    /* STRUCTURED DATA */
+    const serviceNames = [
+      "Laser Dentistry",
+      "Dental Implants",
+      "Cosmetic Dentistry",
+      "Invisible Braces",
+      "Full Mouth Rehabilitation",
+      "Aligners",
+      "Pediatric Dentistry",
+      "Root Canal Treatment",
+      "Sports Dentistry",
+      "Digital Mock-up Smile",
+      "Modern Teeth Whitening",
+      "Dental Prosthetics"
+    ];
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Dentist",
+          "@id": `${websiteUrl}#dentist`,
+          name: "My Dentist",
+          alternateName: "My Dentist Bangalore",
+          url: websiteUrl,
+          logo: logoUrl,
+          image: logoUrl,
+          telephone: "+91-97397-49510",
+          description:
+            "My Dentist provides comprehensive dental services in Bellandur and Koramangala, Bengaluru, using modern technology and personalized treatment planning.",
+          areaServed: [
+            {
+              "@type": "City",
+              name: "Bengaluru"
+            },
+            {
+              "@type": "Place",
+              name: "Bellandur"
+            },
+            {
+              "@type": "Place",
+              name: "Koramangala"
+            }
+          ],
+          knowsAbout: serviceNames,
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Dental Services",
+            itemListElement: serviceNames.map((service) => ({
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: service,
+                provider: {
+                  "@id": `${websiteUrl}#dentist`
+                },
+                areaServed: {
+                  "@type": "City",
+                  name: "Bengaluru"
+                }
+              }
+            }))
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${websiteUrl}#website`,
+          url: websiteUrl,
+          name: "My Dentist Bangalore",
+          inLanguage: "en-IN",
+          publisher: {
+            "@id": `${websiteUrl}#dentist`
+          }
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": `${pageUrl}#webpage`,
+          url: pageUrl,
+          name:
+            "Dental Services in Bangalore | My Dentist Bellandur & Koramangala",
+          description:
+            "Explore comprehensive dental treatments at My Dentist Bangalore, including implants, root canal treatment, aligners, laser dentistry, cosmetic dentistry, pediatric dentistry, teeth whitening and more.",
+          inLanguage: "en-IN",
+          isPartOf: {
+            "@id": `${websiteUrl}#website`
+          },
+          about: {
+            "@id": `${websiteUrl}#dentist`
+          },
+          mainEntity: {
+            "@type": "ItemList",
+            itemListElement: serviceNames.map((service, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: service
+            }))
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${pageUrl}#breadcrumb`,
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: websiteUrl
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Services",
+              item: pageUrl
+            }
+          ]
+        }
+      ]
+    };
+
+    const existingSchema = document.getElementById(
+      "mydentist-services-schema"
+    );
+
+    if (existingSchema) {
+      existingSchema.remove();
+    }
+
+    const schema = document.createElement("script");
+    schema.type = "application/ld+json";
+    schema.id = "mydentist-services-schema";
+    schema.text = JSON.stringify(structuredData);
+    document.head.appendChild(schema);
+
+    return () => {
+      const currentSchema = document.getElementById(
+        "mydentist-services-schema"
+      );
+
+      if (currentSchema) {
+        currentSchema.remove();
+      }
+
+      document
+        .querySelectorAll('[data-services-seo="true"]')
+        .forEach((element) => element.remove());
+    };
+  }, []);
+
 
   const openWhatsApp = (message) => {
     window.open(

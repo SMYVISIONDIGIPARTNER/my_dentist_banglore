@@ -15,6 +15,258 @@ import {
 function Contact() {
   const whatsappNumber = "919739749510";
 
+  /* =====================================================
+     SEO + GEO + STRUCTURED DATA
+  ===================================================== */
+
+  useEffect(() => {
+    const websiteUrl = "https://www.mydentistbangalore.com/";
+    const pageUrl = "https://www.mydentistbangalore.com/contact-us";
+    const logoUrl = "https://www.mydentistbangalore.com/logo.png";
+
+    document.title =
+      "Contact My Dentist Bangalore | Dental Clinic in Bellandur";
+    document.documentElement.lang = "en-IN";
+
+    const setMeta = (attribute, key, content) => {
+      let element = document.head.querySelector(
+        `meta[${attribute}="${key}"]`
+      );
+
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        element.setAttribute("data-contact-seo", "true");
+        document.head.appendChild(element);
+      }
+
+      element.setAttribute("content", content);
+    };
+
+    /* BASIC SEO */
+    setMeta(
+      "name",
+      "description",
+      "Contact My Dentist Bangalore for dental appointments and treatment enquiries at our Bellandur clinic. Call +91 97397 49510 or contact our dental team for professional dental care in Bengaluru."
+    );
+    setMeta(
+      "name",
+      "keywords",
+      "contact My Dentist Bangalore, dentist Bellandur contact, dental clinic Bellandur, dentist in Bellandur, dental clinic in Bengaluru, dental appointment Bangalore, My Dentist Bellandur"
+    );
+    setMeta("name", "author", "My Dentist Bangalore");
+    setMeta(
+      "name",
+      "robots",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+    setMeta(
+      "name",
+      "googlebot",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+
+    /* GEO / LOCAL SEO */
+    setMeta("name", "geo.region", "IN-KA");
+    setMeta(
+      "name",
+      "geo.placename",
+      "Bellandur, Bengaluru, Karnataka, India"
+    );
+
+    /* OPEN GRAPH */
+    setMeta(
+      "property",
+      "og:title",
+      "Contact My Dentist Bangalore | Dental Clinic in Bellandur"
+    );
+    setMeta(
+      "property",
+      "og:description",
+      "Contact My Dentist in Bellandur, Bengaluru for appointments, dental treatment enquiries and clinic assistance."
+    );
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:url", pageUrl);
+    setMeta("property", "og:site_name", "My Dentist Bangalore");
+    setMeta("property", "og:locale", "en_IN");
+    setMeta("property", "og:image", logoUrl);
+    setMeta(
+      "property",
+      "og:image:alt",
+      "My Dentist Bangalore Dental Clinic"
+    );
+
+    /* TWITTER / X */
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta(
+      "name",
+      "twitter:title",
+      "Contact My Dentist Bangalore | Bellandur"
+    );
+    setMeta(
+      "name",
+      "twitter:description",
+      "Contact My Dentist Bellandur for dental appointments and treatment enquiries in Bengaluru."
+    );
+    setMeta("name", "twitter:image", logoUrl);
+
+    /* CANONICAL */
+    let canonical = document.head.querySelector(
+      'link[rel="canonical"]'
+    );
+
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      canonical.setAttribute("data-contact-seo", "true");
+      document.head.appendChild(canonical);
+    }
+
+    canonical.setAttribute("href", pageUrl);
+
+    /* STRUCTURED DATA */
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Dentist",
+          "@id": `${websiteUrl}#dentist`,
+          name: "My Dentist",
+          alternateName: "My Dentist Bangalore",
+          url: websiteUrl,
+          logo: logoUrl,
+          image: logoUrl,
+          telephone: "+91-97397-49510",
+          email: "info@mydentist.com",
+          description:
+            "My Dentist provides professional dental care in Bellandur, Bengaluru, with appointments and treatment enquiries available through phone and WhatsApp.",
+          medicalSpecialty: "Dentistry",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress:
+              "79/8, Front of Golden Residency, Service Rd, Bellandur",
+            addressLocality: "Bengaluru",
+            addressRegion: "Karnataka",
+            postalCode: "560103",
+            addressCountry: "IN"
+          },
+          areaServed: [
+            {
+              "@type": "City",
+              name: "Bengaluru"
+            },
+            {
+              "@type": "Place",
+              name: "Bellandur"
+            }
+          ],
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+              ],
+              opens: "10:00",
+              closes: "19:00"
+            }
+          ],
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+91-97397-49510",
+            contactType: "customer service",
+            areaServed: "IN",
+            availableLanguage: [
+              "English",
+              "Kannada",
+              "Hindi"
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${websiteUrl}#website`,
+          url: websiteUrl,
+          name: "My Dentist Bangalore",
+          inLanguage: "en-IN",
+          publisher: {
+            "@id": `${websiteUrl}#dentist`
+          }
+        },
+        {
+          "@type": "ContactPage",
+          "@id": `${pageUrl}#webpage`,
+          url: pageUrl,
+          name:
+            "Contact My Dentist Bangalore | Dental Clinic in Bellandur",
+          description:
+            "Contact My Dentist Bellandur for dental appointments, treatment enquiries and location assistance in Bengaluru.",
+          inLanguage: "en-IN",
+          isPartOf: {
+            "@id": `${websiteUrl}#website`
+          },
+          about: {
+            "@id": `${websiteUrl}#dentist`
+          },
+          mainEntity: {
+            "@id": `${websiteUrl}#dentist`
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${pageUrl}#breadcrumb`,
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: websiteUrl
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Contact Us",
+              item: pageUrl
+            }
+          ]
+        }
+      ]
+    };
+
+    const existingSchema = document.getElementById(
+      "mydentist-contact-schema"
+    );
+
+    if (existingSchema) {
+      existingSchema.remove();
+    }
+
+    const schema = document.createElement("script");
+    schema.type = "application/ld+json";
+    schema.id = "mydentist-contact-schema";
+    schema.text = JSON.stringify(structuredData);
+    document.head.appendChild(schema);
+
+    return () => {
+      const currentSchema = document.getElementById(
+        "mydentist-contact-schema"
+      );
+
+      if (currentSchema) {
+        currentSchema.remove();
+      }
+
+      document
+        .querySelectorAll('[data-contact-seo="true"]')
+        .forEach((element) => element.remove());
+    };
+  }, []);
+
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",

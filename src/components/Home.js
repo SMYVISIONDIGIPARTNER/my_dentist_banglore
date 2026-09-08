@@ -100,6 +100,380 @@ function AnimatedCounter({
 function Home() {
   const whatsappNumber = "919739749510";
 
+
+  /* =========================================================
+     HOME PAGE SEO + GEO + STRUCTURED DATA
+  ========================================================= */
+
+  useEffect(() => {
+    const websiteUrl = "https://www.mydentistbangalore.com/";
+    const logoUrl = "https://www.mydentistbangalore.com/logo.png";
+
+    const previousTitle = document.title;
+    const previousLang = document.documentElement.lang;
+
+    document.title =
+      "My Dentist Bangalore | Dentist in Bellandur & Koramangala";
+    document.documentElement.lang = "en-IN";
+
+    const touchedMeta = [];
+
+    const setMeta = (attribute, key, content) => {
+      let meta = document.head.querySelector(
+        `meta[${attribute}="${key}"]`
+      );
+
+      if (meta) {
+        touchedMeta.push({
+          element: meta,
+          created: false,
+          previousContent: meta.getAttribute("content"),
+        });
+      } else {
+        meta = document.createElement("meta");
+        meta.setAttribute(attribute, key);
+        meta.setAttribute("data-mydentist-home-seo", "true");
+        document.head.appendChild(meta);
+
+        touchedMeta.push({
+          element: meta,
+          created: true,
+          previousContent: null,
+        });
+      }
+
+      meta.setAttribute("content", content);
+    };
+
+    /* PRIMARY SEO */
+
+    setMeta(
+      "name",
+      "description",
+      "My Dentist Bangalore provides advanced dental care in Bellandur and Koramangala, Bengaluru. Treatments include dental implants, root canal treatment, cosmetic dentistry, invisible braces, aligners, laser dentistry, teeth whitening, pediatric dentistry and full mouth rehabilitation."
+    );
+
+    setMeta(
+      "name",
+      "keywords",
+      "dentist in Bangalore, dentist in Bengaluru, dentist in Bellandur, dentist in Koramangala, dental clinic in Bangalore, dental clinic in Bellandur, dental clinic in Koramangala, dental implants Bangalore, root canal treatment Bangalore, cosmetic dentist Bangalore, invisible braces Bangalore, aligners Bangalore, laser dentistry Bangalore, pediatric dentist Bangalore, teeth whitening Bangalore, My Dentist Bangalore"
+    );
+
+    setMeta("name", "author", "My Dentist Bangalore");
+
+    setMeta(
+      "name",
+      "robots",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+
+    setMeta(
+      "name",
+      "googlebot",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+
+    /* LOCAL / GEO SEO */
+
+    setMeta("name", "geo.region", "IN-KA");
+    setMeta(
+      "name",
+      "geo.placename",
+      "Bellandur, Bengaluru, Karnataka, India"
+    );
+
+    /* OPEN GRAPH */
+
+    setMeta(
+      "property",
+      "og:title",
+      "My Dentist Bangalore | Dental Clinic in Bellandur & Koramangala"
+    );
+
+    setMeta(
+      "property",
+      "og:description",
+      "Professional dental care in Bellandur and Koramangala, Bengaluru. Explore dental implants, root canal treatment, aligners, cosmetic dentistry, laser dentistry and other advanced dental treatments."
+    );
+
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:url", websiteUrl);
+    setMeta("property", "og:site_name", "My Dentist Bangalore");
+    setMeta("property", "og:locale", "en_IN");
+    setMeta("property", "og:image", logoUrl);
+    setMeta(
+      "property",
+      "og:image:alt",
+      "My Dentist Bangalore Dental Clinic"
+    );
+
+    /* TWITTER / X */
+
+    setMeta("name", "twitter:card", "summary_large_image");
+
+    setMeta(
+      "name",
+      "twitter:title",
+      "My Dentist Bangalore | Dentist in Bellandur & Koramangala"
+    );
+
+    setMeta(
+      "name",
+      "twitter:description",
+      "Advanced dental care in Bellandur and Koramangala, Bengaluru including implants, root canal treatment, aligners, cosmetic dentistry and more."
+    );
+
+    setMeta("name", "twitter:image", logoUrl);
+
+    /* CANONICAL */
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    const canonicalExisted = Boolean(canonical);
+    const previousCanonical = canonical?.getAttribute("href") || null;
+
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      canonical.setAttribute("data-mydentist-home-seo", "true");
+      document.head.appendChild(canonical);
+    }
+
+    canonical.setAttribute("href", websiteUrl);
+
+    /* STRUCTURED DATA */
+
+    const serviceNames = [
+      "Laser Dentistry",
+      "Dental Implants",
+      "Cosmetic Dentistry",
+      "Invisible Braces",
+      "Full Mouth Rehabilitation",
+      "Aligners",
+      "Pediatric Dentistry",
+      "Root Canal Treatment",
+      "Sports Dentistry",
+      "Digital Mock-up Smile",
+      "Modern Teeth Whitening",
+      "Dental Prosthetics",
+    ];
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Dentist",
+          "@id": `${websiteUrl}#dentist`,
+          name: "My Dentist",
+          alternateName: "My Dentist Bangalore",
+          url: websiteUrl,
+          logo: {
+            "@type": "ImageObject",
+            url: logoUrl,
+          },
+          image: logoUrl,
+          description:
+            "My Dentist Bangalore provides professional dental care in Bellandur and Koramangala, Bengaluru, including dental implants, root canal treatment, laser dentistry, cosmetic dentistry, aligners, invisible braces, pediatric dentistry, teeth whitening and full mouth rehabilitation.",
+          telephone: "+91-97397-49510",
+          email: "info@mydentistbangalore.com",
+          priceRange: "₹₹",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress:
+              "79/8, Front of Golden Residency, Service Rd, Bellandur",
+            addressLocality: "Bengaluru",
+            addressRegion: "Karnataka",
+            postalCode: "560103",
+            addressCountry: "IN",
+          },
+          areaServed: [
+            {
+              "@type": "City",
+              name: "Bengaluru",
+            },
+            {
+              "@type": "Place",
+              name: "Bellandur",
+            },
+            {
+              "@type": "Place",
+              name: "Koramangala",
+            },
+          ],
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+              ],
+              opens: "09:00",
+              closes: "21:00",
+            },
+          ],
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+91-97397-49510",
+            contactType: "customer service",
+            areaServed: "IN",
+          },
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Dental Treatments",
+            itemListElement: serviceNames.map((service) => ({
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: service,
+                provider: {
+                  "@id": `${websiteUrl}#dentist`,
+                },
+                areaServed: {
+                  "@type": "City",
+                  name: "Bengaluru",
+                },
+              },
+            })),
+          },
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${websiteUrl}#website`,
+          url: websiteUrl,
+          name: "My Dentist Bangalore",
+          alternateName: "My Dentist",
+          inLanguage: "en-IN",
+          publisher: {
+            "@id": `${websiteUrl}#dentist`,
+          },
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${websiteUrl}#webpage`,
+          url: websiteUrl,
+          name:
+            "My Dentist Bangalore | Dentist in Bellandur & Koramangala",
+          description:
+            "Professional and advanced dental treatments in Bellandur and Koramangala, Bengaluru.",
+          inLanguage: "en-IN",
+          isPartOf: {
+            "@id": `${websiteUrl}#website`,
+          },
+          about: {
+            "@id": `${websiteUrl}#dentist`,
+          },
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: logoUrl,
+          },
+          breadcrumb: {
+            "@id": `${websiteUrl}#breadcrumb`,
+          },
+        },
+        {
+          "@type": "Person",
+          name: "Dr Harshita",
+          jobTitle: "Director and Consulting Dental Surgeon",
+          image: `${websiteUrl}images/dr-harshita.jpg`,
+          worksFor: {
+            "@id": `${websiteUrl}#dentist`,
+          },
+        },
+        {
+          "@type": "Person",
+          name: "Dr Bhavna Sharma",
+          jobTitle: "Endodontist",
+          image: `${websiteUrl}images/dr-bhavna.jpg`,
+          worksFor: {
+            "@id": `${websiteUrl}#dentist`,
+          },
+        },
+        {
+          "@type": "Person",
+          name: "Dr Saurabh Gupta",
+          jobTitle: "Maxillofacial Surgeon",
+          image: `${websiteUrl}images/dr-saurabh.jpg`,
+          worksFor: {
+            "@id": `${websiteUrl}#dentist`,
+          },
+        },
+        {
+          "@type": "Person",
+          name: "Disha Dhananjay",
+          jobTitle: "Aesthetic Dentist",
+          image: `${websiteUrl}images/disha-dhananjay.jpg`,
+          worksFor: {
+            "@id": `${websiteUrl}#dentist`,
+          },
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${websiteUrl}#breadcrumb`,
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: websiteUrl,
+            },
+          ],
+        },
+      ],
+    };
+
+    const existingSchema = document.getElementById(
+      "mydentist-home-schema"
+    );
+
+    if (existingSchema) {
+      existingSchema.remove();
+    }
+
+    const schemaScript = document.createElement("script");
+    schemaScript.type = "application/ld+json";
+    schemaScript.id = "mydentist-home-schema";
+    schemaScript.text = JSON.stringify(structuredData);
+    document.head.appendChild(schemaScript);
+
+    return () => {
+      document.title = previousTitle;
+      document.documentElement.lang = previousLang || "en";
+
+      touchedMeta.forEach(
+        ({ element, created, previousContent }) => {
+          if (created) {
+            element.remove();
+          } else if (previousContent === null) {
+            element.removeAttribute("content");
+          } else {
+            element.setAttribute("content", previousContent);
+          }
+        }
+      );
+
+      if (canonicalExisted) {
+        if (previousCanonical === null) {
+          canonical.removeAttribute("href");
+        } else {
+          canonical.setAttribute("href", previousCanonical);
+        }
+      } else {
+        canonical.remove();
+      }
+
+      const schema = document.getElementById(
+        "mydentist-home-schema"
+      );
+
+      if (schema) {
+        schema.remove();
+      }
+    };
+  }, []);
+
   const [appointment, setAppointment] = useState({
     name: "",
     email: "",

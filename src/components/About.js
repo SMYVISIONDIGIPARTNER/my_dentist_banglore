@@ -91,6 +91,235 @@ function AnimatedCounter({
 function About() {
   const whatsappNumber = "919739749510";
 
+  /* =======================================================
+     SEO + GEO + STRUCTURED DATA
+  ======================================================= */
+
+  useEffect(() => {
+    const websiteUrl = "https://www.mydentistbangalore.com/";
+    const pageUrl = "https://www.mydentistbangalore.com/about-us";
+    const logoUrl = "https://www.mydentistbangalore.com/logo.png";
+
+    document.title =
+      "About My Dentist Bangalore | Bellandur & Koramangala Dental Clinic";
+    document.documentElement.lang = "en-IN";
+
+    const setMeta = (attribute, key, content) => {
+      let element = document.head.querySelector(
+        `meta[${attribute}="${key}"]`
+      );
+
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        element.setAttribute("data-about-seo", "true");
+        document.head.appendChild(element);
+      }
+
+      element.setAttribute("content", content);
+    };
+
+    setMeta(
+      "name",
+      "description",
+      "Learn about My Dentist Bangalore, providing modern, patient-focused dental care in Bellandur and Koramangala with experienced dental professionals, advanced technology and personalized treatment."
+    );
+    setMeta(
+      "name",
+      "keywords",
+      "about My Dentist Bangalore, dentist in Bellandur, dentist in Koramangala, dental clinic in Bangalore, dental clinic in Bengaluru, My Dentist Bellandur, My Dentist Koramangala, dental care Bangalore"
+    );
+    setMeta("name", "author", "My Dentist Bangalore");
+    setMeta(
+      "name",
+      "robots",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+    setMeta(
+      "name",
+      "googlebot",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+
+    /* GEO / LOCAL SEO */
+    setMeta("name", "geo.region", "IN-KA");
+    setMeta(
+      "name",
+      "geo.placename",
+      "Bengaluru, Karnataka, India"
+    );
+
+    /* OPEN GRAPH */
+    setMeta(
+      "property",
+      "og:title",
+      "About My Dentist Bangalore | Bellandur & Koramangala"
+    );
+    setMeta(
+      "property",
+      "og:description",
+      "Discover My Dentist Bangalore and our approach to modern, personalized dental care in Bellandur and Koramangala."
+    );
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:url", pageUrl);
+    setMeta("property", "og:site_name", "My Dentist Bangalore");
+    setMeta("property", "og:locale", "en_IN");
+    setMeta("property", "og:image", logoUrl);
+    setMeta(
+      "property",
+      "og:image:alt",
+      "My Dentist Bangalore"
+    );
+
+    /* TWITTER / X */
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta(
+      "name",
+      "twitter:title",
+      "About My Dentist Bangalore | Bellandur & Koramangala"
+    );
+    setMeta(
+      "name",
+      "twitter:description",
+      "Learn about My Dentist Bangalore, our experienced dental professionals, modern technology and patient-focused care."
+    );
+    setMeta("name", "twitter:image", logoUrl);
+
+    /* CANONICAL */
+    let canonical = document.head.querySelector(
+      'link[rel="canonical"]'
+    );
+
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      canonical.setAttribute("data-about-seo", "true");
+      document.head.appendChild(canonical);
+    }
+
+    canonical.setAttribute("href", pageUrl);
+
+    /* STRUCTURED DATA */
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Dentist",
+          "@id": `${websiteUrl}#dentist`,
+          name: "My Dentist",
+          alternateName: "My Dentist Bangalore",
+          url: websiteUrl,
+          logo: logoUrl,
+          image: logoUrl,
+          telephone: "+91-97397-49510",
+          description:
+            "My Dentist provides modern, patient-focused dental care in Bellandur and Koramangala, Bengaluru, with experienced dental professionals, advanced technology and personalized treatment.",
+          medicalSpecialty: "Dentistry",
+          areaServed: [
+            {
+              "@type": "City",
+              name: "Bengaluru"
+            },
+            {
+              "@type": "Place",
+              name: "Bellandur"
+            },
+            {
+              "@type": "Place",
+              name: "Koramangala"
+            }
+          ],
+          knowsAbout: [
+            "Laser Dentistry",
+            "Cosmetic Dentistry",
+            "Dental Implants",
+            "Full Mouth Rehabilitation",
+            "Aligner Therapy",
+            "Root Canal Treatment",
+            "Crown and Bridge Dentistry"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${websiteUrl}#website`,
+          url: websiteUrl,
+          name: "My Dentist Bangalore",
+          inLanguage: "en-IN",
+          publisher: {
+            "@id": `${websiteUrl}#dentist`
+          }
+        },
+        {
+          "@type": "AboutPage",
+          "@id": `${pageUrl}#webpage`,
+          url: pageUrl,
+          name:
+            "About My Dentist Bangalore | Bellandur & Koramangala Dental Clinic",
+          description:
+            "Learn about My Dentist Bangalore, our experienced dental professionals, advanced technology and personalized dental care in Bellandur and Koramangala.",
+          inLanguage: "en-IN",
+          isPartOf: {
+            "@id": `${websiteUrl}#website`
+          },
+          about: {
+            "@id": `${websiteUrl}#dentist`
+          },
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: logoUrl
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${pageUrl}#breadcrumb`,
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: websiteUrl
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "About Us",
+              item: pageUrl
+            }
+          ]
+        }
+      ]
+    };
+
+    const oldSchema = document.getElementById(
+      "mydentist-about-schema"
+    );
+
+    if (oldSchema) {
+      oldSchema.remove();
+    }
+
+    const schema = document.createElement("script");
+    schema.type = "application/ld+json";
+    schema.id = "mydentist-about-schema";
+    schema.text = JSON.stringify(structuredData);
+    document.head.appendChild(schema);
+
+    return () => {
+      const currentSchema = document.getElementById(
+        "mydentist-about-schema"
+      );
+
+      if (currentSchema) {
+        currentSchema.remove();
+      }
+
+      document
+        .querySelectorAll('[data-about-seo="true"]')
+        .forEach((element) => element.remove());
+    };
+  }, []);
+
+
   const openWhatsApp = (message) => {
     window.open(
       `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
