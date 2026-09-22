@@ -468,11 +468,11 @@ function Navbar() {
           <div className="health-nav-actions">
 
             <a
-              href="tel:+919876543210"
+              href="tel:+919739749510"
               className="health-phone"
             >
               <FaPhoneAlt />
-              <span>+91 98765 43210</span>
+              <span>+91 97397 49510</span>
             </a>
 
             <Link
@@ -535,11 +535,11 @@ function Navbar() {
         <div className="health-mobile-divider" />
 
         <a
-          href="tel:+919876543210"
+          href="tel:+919739749510"
           className="health-mobile-phone"
         >
           <FaPhoneAlt />
-          <span>+91 98765 43210</span>
+          <span>+91 97397 49510</span>
         </a>
 
         <Link

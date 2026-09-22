@@ -274,7 +274,7 @@ function Home() {
           description:
             "My Dentist Bangalore provides professional dental care in Bellandur and Koramangala, Bengaluru, including dental implants, root canal treatment, laser dentistry, cosmetic dentistry, aligners, invisible braces, pediatric dentistry, teeth whitening and full mouth rehabilitation.",
           telephone: "+91-97397-49510",
-          email: "info@mydentistbangalore.com",
+          email: "info@mydentist.com",
           priceRange: "₹₹",
           address: {
             "@type": "PostalAddress",
@@ -3554,8 +3554,8 @@ Please confirm the available appointment timing.
                     <FaEnvelope />
                   </div>
 
-                  <a href="mailto:info@mydentistbangalore.com">
-                    info@mydentistbangalore.com
+                  <a href="mailto:info@mydentist.com">
+                    info@mydentist.com
                   </a>
 
                 </div>
